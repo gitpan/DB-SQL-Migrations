@@ -6,7 +6,7 @@ use File::Basename;
 use DBIx::MultiStatementDo;
 use File::Slurp;
 
-our $VERSION = '0.06';
+our $VERSION = '0.07';
 
 has [qw( dbh migrations_directory  )];
 has schema_migrations_table => sub { 'schema_migrations' };
@@ -114,7 +114,7 @@ sub create_migrations_table {
   my $sql = "CREATE TABLE IF NOT EXISTS $table_name (
                 $name_field varchar(255) NOT NULL PRIMARY KEY,
                 $date_field datetime NOT NULL
-             ) ENGINE=InnoDB;   
+             );   
   ";
 
   $self->dbh->do($sql);
